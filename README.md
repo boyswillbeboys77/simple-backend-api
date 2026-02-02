@@ -32,8 +32,8 @@ CRUD（作成・取得・更新・削除）を行う **最小構成のバック�
 
 ### 1. リポジトリをクローン
 ```
-git clone https://github.com/<your-name>/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/boyswillbeboys77/simple-backend-api.git
+cd simple-backend-api
 ```
 
 ### 2. 仮想環境を作成・有効化
