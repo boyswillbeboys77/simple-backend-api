@@ -59,8 +59,8 @@ Swagger UI: http://127.0.0.1:8000/docs
 ## セットアップ（Linux / macOS）
 
 ```
-git clone https://github.com/<your-name>/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/boyswillbeboys77/simple-backend-api.git
+cd simple-backend-api
 
 python3 -m venv venv
 source venv/bin/activate
