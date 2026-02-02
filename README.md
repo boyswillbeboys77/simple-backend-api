@@ -1,48 +1,64 @@
 # simple-backend-api
-FastAPI × SQLite × SQLAlchemy
+**FastAPI × SQLite × SQLAlchemy**
 
-Web から title / description を受け取り、SQLite に保存して
-CRUD（作成・取得・更新・削除）を行う最小構成のバックエンド API です。
+Web から `title` / `description` を受け取り、SQLite に保存して  
+CRUD（作成・取得・更新・削除）を行う **最小構成のバックエンド API** です。
 
---------------------------------------------------
-構成
---------------------------------------------------
+> Web → API → DB の流れを理解するための学習用サンプル
 
+---
+
+## 使用技術
+
+- **FastAPI**：API サーバー
+- **SQLAlchemy**：ORM（Python ↔ DB）
+- **SQLite**：ローカル DB
+
+---
+
+## ディレクトリ構成
+
+```
 .
 ├── main.py
 ├── database.py
 ├── models.py
 └── requirements.txt
+```
 
---------------------------------------------------
-セットアップ（Windows / PowerShell）
---------------------------------------------------
+---
 
-1. リポジトリをクローン
+## セットアップ（Windows / PowerShell）
 
+### 1. リポジトリをクローン
+```
 git clone https://github.com/<your-name>/<repo-name>.git
 cd <repo-name>
+```
 
-2. 仮想環境を作成・有効化
-
+### 2. 仮想環境を作成・有効化
+```
 python -m venv venv
 .\venv\Scripts\activate
+```
 
-3. 依存関係をインストール
-
+### 3. 依存関係をインストール
+```
 pip install -r requirements.txt
+```
 
-4. サーバー起動
-
+### 4. サーバー起動
+```
 uvicorn main:app --reload
+```
 
-Swagger UI:
-http://127.0.0.1:8000/docs
+Swagger UI: http://127.0.0.1:8000/docs
 
---------------------------------------------------
-セットアップ（Linux / macOS）
---------------------------------------------------
+---
 
+## セットアップ（Linux / macOS）
+
+```
 git clone https://github.com/<your-name>/<repo-name>.git
 cd <repo-name>
 
@@ -51,38 +67,65 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 uvicorn main:app --reload
+```
 
---------------------------------------------------
-API 仕様
---------------------------------------------------
+---
 
-POST /tasks
-title, description をクエリで送信
+## API 仕様
 
-例:
+### Create（POST） `/tasks`
+```
 curl -X POST "http://127.0.0.1:8000/tasks?title=study&description=fastapi"
+```
 
-GET /tasks
-登録されているタスク一覧を取得
+### Read（GET） `/tasks`
+```
+curl -X GET "http://127.0.0.1:8000/tasks"
+```
 
-PUT /tasks/{task_id}
-タスクを更新
+### Update（PUT） `/tasks/{task_id}`
+```
+curl -X PUT "http://127.0.0.1:8000/tasks/1?title=study2&description=sqlalchemy"
+```
 
-DELETE /tasks/{task_id}
-タスクを削除
+### Delete（DELETE） `/tasks/{task_id}`
+```
+curl -X DELETE "http://127.0.0.1:8000/tasks/1"
+```
 
---------------------------------------------------
-データベース
---------------------------------------------------
+---
 
-SQLite を使用
-test.db がプロジェクト直下に作成されます
+## データベース
 
---------------------------------------------------
-.gitignore（推奨）
---------------------------------------------------
+- SQLite を使用
+- `test.db` がプロジェクト直下に作成される
+- 起動時にテーブル自動生成
 
+```python
+Base.metadata.create_all(bind=engine)
+```
+
+---
+
+## 実装のポイント
+
+- `Depends(get_db)` により DB セッションを自動注入
+- リクエスト単位で Session を生成・終了
+- ORM による安全な DB 操作
+
+---
+
+## .gitignore（推奨）
+
+```
 __pycache__/
 *.pyc
 venv/
 test.db
+```
+
+---
+
+## License
+
+必要に応じて MIT License 等を追加してください。
