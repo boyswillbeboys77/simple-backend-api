@@ -123,3 +123,9 @@ __pycache__/
 venv/
 test.db
 ```
+
+## Qiitaで自分なりの深堀り理解
+APIをつくるとはどういうことか、自分なりに整理しています。
+👉 https://qiita.com/boyswillbeboys/items/f69ee7b743992e0df9ce
+
+
