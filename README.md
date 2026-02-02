@@ -123,9 +123,3 @@ __pycache__/
 venv/
 test.db
 ```
-
----
-
-## License
-
-必要に応じて MIT License 等を追加してください。
